@@ -26,6 +26,13 @@ CREATE TABLE csuser (
 	email text
 );
 
+CREATE TABLE uservids (
+	userid integer REFERENCES csuser (userid),
+	vidid integer REFERENCES videos (vidid),
+	creator boolean
+	PRIMARY KEY (userid,vidid)
+);
+
 CREATE TABLE contest (
 	contestid integer SERIAL PRIMARY KEY,
 	coordinator integer REFERENCES csuser (userid),
@@ -42,6 +49,7 @@ CREATE TABLE contestsubmissions(
 	entrystatus status,
 	statuscomment text,
 	category text,
+	creditname text,
 	PRIMARY KEY (contestid, vidid)
 );
 	
